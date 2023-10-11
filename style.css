@@ -35,14 +35,16 @@ html {
   margin: 1rem;
   width: 100%;
 
+  & p:first-of-type {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
   & input:invalid {
     color: red;
-    border: 1px solid red;
   }
 
-  select:invalid {
+  & select:invalid {
     color: red;
-    border: 1px solid red;
   }
 
   & > fieldset {

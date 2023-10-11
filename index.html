@@ -19,9 +19,10 @@
       <form class="new_pet_form" aria-hidden="true" id="content">
         <fieldset>
           <legend>Fill in your pets information</legend>
-          <label for="name">Name</label>
-          <input id="name" type="text" placeholder="Ex. Fluffy" required />
-          <label for="species">Species</label>
+          <p>* is required</p>
+          <label for="name">Name*</label>
+          <input name="name" id="name" type="text" placeholder="Ex. Fluffy" required />
+          <label for="species">Species*</label>
           <select name="species" id="species" required>
             <option value="">Please choose an option...</option>
             <option value="cat">Cat</option>
@@ -31,7 +32,7 @@
             <option value="other">Other</option>
           </select>
           <label for="race">Race</label>
-          <input type="text" list="list" placeholder="Ex. Golden retriever" />
+          <input name="race" type="text" list="list" placeholder="Ex. Golden retriever" />
           <datalist id="list">
             <option value="Ragdoll"></option>
             <option value="House cat"></option>
@@ -40,7 +41,7 @@
             <option value="Dwarf ram"></option>
           </datalist>
           <label for="traits">Traits</label>
-          <textarea id="traits" placeholder="Ex. Clever"></textarea>
+          <textarea name="traits" id="traits" placeholder="Ex. Clever"></textarea>
           <label for="activityLevel">Activity Level</label>
           <select name="activityLevel" id="activityLevel">
             <option value="">Please choose a level...</option>
@@ -53,11 +54,11 @@
           <fieldset class="dob">
             <legend>Date of birth</legend>
             <label for="day">Day</label>
-            <input id="day" type="number" min="1" max="31" placeholder="Ex. 31" />
+            <input name="day" id="day" type="number" min="1" max="31" placeholder="Ex. 31" />
             <label for="month">Month</label>
-            <input id="month" type="number" min="1" max="12" placeholder="Ex. 12" />
+            <input name="month" id="month" type="number" min="1" max="12" placeholder="Ex. 12" />
             <label for="year">Year</label>
-            <input id="year" type="number" placeholder="Ex. 2023" />
+            <input name="year" id="year" type="number" placeholder="Ex. 2023" />
           </fieldset>
           <fieldset>
             <legend>Is the pet alive?</legend>

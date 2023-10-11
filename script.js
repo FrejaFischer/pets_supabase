@@ -4,7 +4,6 @@ async function displayPets() {
   const pets = await getPets();
   console.log(pets);
   document.querySelector(".pets").innerHTML = "";
-  //   document.querySelector(".pets").innerHTML = "<article><h2>Add new pet</h2> <button data-action='add_pet'>Add</button></article>";
 
   pets.forEach((pet) => {
     const clone = document.querySelector("template#pet").content.cloneNode(true);
