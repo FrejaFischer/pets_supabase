@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  border: 0;
+  /* border: 0; */
   outline: 0;
   box-sizing: border-box;
   text-decoration: none;
@@ -30,4 +30,24 @@ html {
 .pets {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+article {
+  border: 0.1rem solid forestgreen;
+}
+.new_pet_form {
+  & > fieldset {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    width: 50%;
+    max-width: 20rem;
+  }
+  & .dob {
+    display: flex;
+    gap: 0.5rem;
+  }
+  & .dob input {
+    max-width: 5rem;
+  }
 }
