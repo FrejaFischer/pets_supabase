@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&family=Roboto:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+    <title>REST Pets</title>
+  </head>
+  <body>
+    <h1>Pets</h1>
+    <section class="pets"></section>
+
+    <template id="pet">
+      <article>
+        <h2 data-field="name">NAME</h2>
+        <p><span data-field="species">Species</span> - <span data-field="race">Race</span></p>
+        <p data-field="traits">Traits</p>
+        <p data-field="act">Activity Level</p>
+        <p>Date of birth: <span data-field="dob"></span></p>
+        <p>Is alive: <span data-field="alive"></span></p>
+      </article>
+    </template>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
