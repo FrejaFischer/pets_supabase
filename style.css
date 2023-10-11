@@ -32,7 +32,7 @@ html {
   margin: 1rem;
 }
 .new_pet_form {
-  margin: 1rem;
+  padding: 0.5rem;
   width: 100%;
 
   & p:first-of-type {
@@ -62,7 +62,9 @@ html {
     padding: 0.5rem;
   }
   & .dob input {
-    max-width: 5rem;
+    height: fit-content;
+    min-width: 3rem;
+    max-width: 3.5rem;
   }
   & [placeholder] {
     font-style: italic;
