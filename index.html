@@ -11,14 +11,18 @@
   </head>
   <body>
     <h1>Pets</h1>
-    <section>
-      <form class="new_pet_form">
+    <section class="add_pet">
+      <article>
+        <h2>Add new pet</h2>
+        <button data-action="add_pet" aria-expanded="false" aria-controls="content">Add</button>
+      </article>
+      <form class="new_pet_form" aria-hidden="true" id="content">
         <fieldset>
-          <legend>Add new pet</legend>
+          <legend>Fill in your pets information</legend>
           <label for="name">Name</label>
-          <input id="name" type="text" placeholder="Ex. Fluffy" />
+          <input id="name" type="text" placeholder="Ex. Fluffy" required />
           <label for="species">Species</label>
-          <select name="species" id="species">
+          <select name="species" id="species" required>
             <option value="">Please choose an option...</option>
             <option value="cat">Cat</option>
             <option value="dog">Dog</option>
@@ -30,12 +34,13 @@
           <input type="text" list="list" placeholder="Ex. Golden retriever" />
           <datalist id="list">
             <option value="Ragdoll"></option>
+            <option value="House cat"></option>
             <option value="Golden retriever"></option>
             <option value="Budgie"></option>
             <option value="Dwarf ram"></option>
           </datalist>
           <label for="traits">Traits</label>
-          <textarea id="traits" placeholder="Ex. clever"></textarea>
+          <textarea id="traits" placeholder="Ex. Clever"></textarea>
           <label for="activityLevel">Activity Level</label>
           <select name="activityLevel" id="activityLevel">
             <option value="">Please choose a level...</option>
@@ -48,12 +53,18 @@
           <fieldset class="dob">
             <legend>Date of birth</legend>
             <label for="day">Day</label>
-            <input id="day" type="number" min="1" max="31" />
+            <input id="day" type="number" min="1" max="31" placeholder="Ex. 31" />
             <label for="month">Month</label>
-            <input id="month" type="number" min="1" max="12" />
+            <input id="month" type="number" min="1" max="12" placeholder="Ex. 12" />
             <label for="year">Year</label>
-            <input id="year" type="number" />
+            <input id="year" type="number" placeholder="Ex. 2023" />
           </fieldset>
+          <fieldset>
+            <legend>Is the pet alive?</legend>
+            <label for="alive"><input type="radio" id="alive" name="isAlive" />Yes</label>
+            <label for="dead"><input type="radio" id="dead" name="isAlive" />No</label>
+          </fieldset>
+          <button type="submit">Submit pet</button>
         </fieldset>
       </form>
     </section>
@@ -64,11 +75,11 @@
         <h2 data-field="name">NAME</h2>
         <p><span data-field="species">Species</span> - <span data-field="race">Race</span></p>
         <p data-field="traits">Traits</p>
-        <p data-field="act">Activity Level</p>
+        <p>Activity level: <span data-field="act">Activity Level</span></p>
         <p>Date of birth: <span data-field="dob"></span></p>
         <p>Is alive: <span data-field="alive"></span></p>
         <button data-id="15" data-action="delete">Delete</button>
-        <button data-id="15" data-action="update">Update</button>
+        <button data-id="15" data-action="update">Update state</button>
       </article>
     </template>
     <script type="module" src="script.js"></script>

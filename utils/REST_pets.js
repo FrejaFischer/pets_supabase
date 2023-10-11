@@ -60,30 +60,37 @@ export async function deletePet(id) {
 }
 
 //PATCH request
-export async function patchPet(id) {
+export async function patchPet(id, pet) {
   let headersList = {
     apikey: apikey,
     "Content-Type": "application/json",
     Prefer: "return=representation",
   };
 
-  let bodyContent = JSON.stringify({
-    race: "Corgi",
-    dob: "2000-04-26",
-    name: "Gunther",
-    isAlive: true,
-    activityLevel: 3,
-    traits: ["good boy"],
-    species: "Dog",
-    image: "doggyGunther.webp",
-  });
-
-  let response = await fetch(URL + "?id=eq." + id, {
-    method: "PATCH",
-    body: bodyContent,
-    headers: headersList,
-  });
-
-  let data = await response.json();
-  return data;
+  //toggle the pet isAlive state
+  if (pet.isAlive === true) {
+    let bodyContent = JSON.stringify({
+      isAlive: false,
+      activityLevel: 0,
+    });
+    let response = await fetch(URL + "?id=eq." + id, {
+      method: "PATCH",
+      body: bodyContent,
+      headers: headersList,
+    });
+    let data = await response.json();
+    return data;
+  } else {
+    let bodyContent = JSON.stringify({
+      isAlive: true,
+      activityLevel: 5,
+    });
+    let response = await fetch(URL + "?id=eq." + id, {
+      method: "PATCH",
+      body: bodyContent,
+      headers: headersList,
+    });
+    let data = await response.json();
+    return data;
+  }
 }

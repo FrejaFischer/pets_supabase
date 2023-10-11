@@ -27,27 +27,54 @@ html {
     font-weight: 300;
   }
 }
-.pets {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-article {
-  border: 0.1rem solid forestgreen;
+.add_pet article {
+  max-width: 20rem;
+  margin: 1rem;
 }
 .new_pet_form {
+  margin: 1rem;
+  width: 100%;
+
+  & input:invalid {
+    color: red;
+    border: 1px solid red;
+  }
+
+  select:invalid {
+    color: red;
+    border: 1px solid red;
+  }
+
   & > fieldset {
     display: flex;
     gap: 1rem;
     flex-direction: column;
     width: 50%;
     max-width: 20rem;
+    border: 1px solid forestgreen;
+    padding: 0.5rem;
   }
-  & .dob {
+  & > fieldset > fieldset {
     display: flex;
     gap: 0.5rem;
+    padding: 0.5rem;
   }
   & .dob input {
     max-width: 5rem;
   }
+  & [placeholder] {
+    font-style: italic;
+  }
+}
+/* #content {
+  display: none;
+} */
+.pets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem;
+}
+article {
+  border: 1px solid forestgreen;
 }
