@@ -39,21 +39,55 @@ async function displayPets() {
 }
 function addPet() {
   const addBtn = document.querySelector("[data-action='add_pet']");
+  const cancelBtn = document.querySelector(".cross");
+  const petAction = document.querySelector(".new_pet_action");
   const content = document.querySelector("#content");
-  content.style.display = "none";
   addBtn.addEventListener("click", () => {
-    if (content.style.display === "none") {
-      content.style.display = "block";
-      addBtn.setAttribute("aria-expanded", "true");
-      content.setAttribute("aria-hidden", "false");
-      addBtn.textContent = "Cancel";
-    } else {
-      content.style.display = "none";
+    petAction.classList.add("hide");
+    content.classList.remove("hide");
+    addBtn.setAttribute("aria-expanded", "true");
+    content.setAttribute("aria-hidden", "false");
+    document.querySelector("main").classList.add("grid_view");
+
+    cancelBtn.addEventListener("click", () => {
+      petAction.classList.remove("hide");
+      content.classList.add("hide");
       addBtn.setAttribute("aria-expanded", "false");
       content.setAttribute("aria-hidden", "true");
-      addBtn.textContent = "Add";
-    }
+      document.querySelector("main").classList.remove("grid_view");
+    });
   });
 }
 addPet();
 displayPets();
+
+const form = document.querySelector(".new_pet_form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  let alive = true;
+  if (formData.get("isAlive") == "0") {
+    alive = false;
+  }
+
+  const newPet = {
+    name: formData.get("name"),
+    race: formData.get("race"),
+  };
+
+  console.log(newPet);
+});
+
+//Saml formen op
+//lytte efter submit, evt.preventDefault()
+//samle
+// race: "Labrador",
+// dob: "2005-03-26",
+// name: "Felix",
+// isAlive: true,
+// activityLevel: 4,
+// traits: ["good boy"],
+// species: "Dog",
+// image: "doggyFelix.webp",

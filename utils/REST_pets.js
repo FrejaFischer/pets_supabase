@@ -17,22 +17,13 @@ export async function getPets() {
 }
 
 // POST request
-export async function postPet() {
+export async function postPet(data) {
   let headersList = {
     apikey: apikey,
     "Content-Type": "application/json",
     Prefer: "return=representation",
   };
-  let bodyContent = JSON.stringify({
-    race: "Labrador",
-    dob: "2005-03-26",
-    name: "Felix",
-    isAlive: true,
-    activityLevel: 4,
-    traits: ["good boy"],
-    species: "Dog",
-    image: "doggyFelix.webp",
-  });
+  let bodyContent = JSON.stringify(data);
 
   let response = await fetch(URL, {
     method: "POST",
@@ -40,8 +31,8 @@ export async function postPet() {
     headers: headersList,
   });
 
-  let data = await response.json();
-  return data;
+  let answer = await response.json();
+  return answer;
 }
 
 //DELETE request
