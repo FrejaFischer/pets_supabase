@@ -97,18 +97,21 @@ form.addEventListener("submit", async (e) => {
   let species = formData.get("species");
   if (species === "Other") {
     species = document.querySelector("#other_species").value;
+    let newSpecies = species.replace(species[0], species[0].toUpperCase());
+    species = newSpecies;
   }
 
   //Makes the race first letter in uppercase
   let petRace = formData.get("race");
   let newRace;
-  if (petRace.lenght > 0) {
+  if (petRace.length > 0) {
     newRace = petRace.replace(petRace[0], petRace[0].toUpperCase());
   }
   //Makes each traits first letter in uppercase
   let traitsArray = formData.get("traits").split("\n");
+  console.log(traitsArray.length);
   let newTraitArray = [];
-  if (traitsArray.lenght > 0) {
+  if (traitsArray.length > 0) {
     traitsArray.forEach((trait) => {
       let newTrait = trait.replace(trait[0], trait[0].toUpperCase());
       console.log(newTrait);
