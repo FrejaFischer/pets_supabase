@@ -220,6 +220,19 @@ button[class="cross"] {
     width: 100%;
   }
 }
+.traits-list {
+  display: flex;
+  flex-flow: wrap;
+  gap: 0.3rem;
+  list-style: none;
+}
+
+.traits-list dd {
+  padding: 0.15rem 0.3rem;
+  border-radius: 10px;
+  background: var(--secondary-color);
+  color: black;
+}
 
 .hide {
   display: none;

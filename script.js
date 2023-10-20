@@ -11,7 +11,8 @@ async function displayPets() {
     clone.querySelector("[data-field=name]").textContent = pet.name;
     clone.querySelector("[data-field=species]").textContent = pet.species;
     clone.querySelector("[data-field=race]").textContent = pet.race;
-    clone.querySelector("[data-field=traits]").textContent = pet.traits;
+    // clone.querySelector("[data-field=traits]").textContent = pet.traits;
+    clone.querySelector(".traits-list").innerHTML += pet.traits.map((trait) => `<dd>${trait}</dd>`).join("");
     clone.querySelector("[data-field=act]").textContent = pet.activityLevel;
     clone.querySelector("[data-field=dob]").textContent = pet.dob;
     if (pet.isAlive === false) {
