@@ -10,11 +10,18 @@ async function displayPets() {
 
     clone.querySelector("[data-field=name]").textContent = pet.name;
     clone.querySelector("[data-field=species]").textContent = pet.species;
-    clone.querySelector("[data-field=race]").textContent = pet.race;
+    clone.querySelector("[data-field=race]").textContent = " - " + pet.race;
+    if (pet.race == null) {
+      clone.querySelector("[data-field=race]").textContent = "";
+    }
     // clone.querySelector("[data-field=traits]").textContent = pet.traits;
     clone.querySelector(".traits-list").innerHTML += pet.traits.map((trait) => `<dd>${trait}</dd>`).join("");
     clone.querySelector("[data-field=act]").textContent = pet.activityLevel;
-    clone.querySelector("[data-field=dob]").textContent = pet.dob;
+    // clone.querySelector("[data-field=dob]").textContent = pet.dob;
+    clone.querySelector("[data-field=dob] span").textContent = new Date().getFullYear() - pet.dob.slice(0, 4);
+    if (clone.querySelector("[data-field=dob] span").textContent == "1") {
+      clone.querySelector("[data-field=dob]").textContent = "1 year old";
+    }
     if (pet.isAlive === false) {
       clone.querySelector("[data-field=isAlive]").classList.remove("hide");
     }
@@ -51,12 +58,20 @@ function addPet() {
     content.setAttribute("aria-hidden", "false");
     document.querySelector("main").classList.add("grid_view");
 
-    cancelBtn.addEventListener("click", () => {
+    cancelBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       petAction.classList.remove("hide");
       content.classList.add("hide");
       addBtn.setAttribute("aria-expanded", "false");
       content.setAttribute("aria-hidden", "true");
       document.querySelector("main").classList.remove("grid_view");
+    });
+
+    document.querySelector("#species").addEventListener("input", () => {
+      if (document.querySelector("#species option[value='Other']").selected) {
+        console.log("other is choosen");
+        document.querySelector(".other_species").classList.remove("hide");
+      }
     });
   });
 }
@@ -77,19 +92,32 @@ form.addEventListener("submit", async (e) => {
   let petName = formData.get("name");
   let newName = petName.replace(petName[0], petName[0].toUpperCase());
 
+  //If species is other
+  let species = formData.get("species");
+  if (species === "Other") {
+    species = document.querySelector("#other_species").value;
+  }
+
+  //Makes the race first letter in uppercase
+  let petRace = formData.get("race");
+  let newRace;
+  if (petRace.lenght > 0) {
+    newRace = petRace.replace(petRace[0], petRace[0].toUpperCase());
+  }
   //Makes each traits first letter in uppercase
   let traitsArray = formData.get("traits").split("\n");
   let newTraitArray = [];
-  traitsArray.forEach((trait) => {
-    let newTrait = trait.replace(trait[0], trait[0].toUpperCase());
-    console.log(newTrait);
-    newTraitArray.push(newTrait);
-  });
-
+  if (traitsArray.lenght > 0) {
+    traitsArray.forEach((trait) => {
+      let newTrait = trait.replace(trait[0], trait[0].toUpperCase());
+      console.log(newTrait);
+      newTraitArray.push(newTrait);
+    });
+  }
   const newPet = {
     name: newName,
-    species: formData.get("species"),
-    race: formData.get("race"),
+    species: species,
+    race: newRace,
     traits: newTraitArray,
     activityLevel: formData.get("activityLevel"),
     dob: formData.get("dob"),
@@ -99,4 +127,5 @@ form.addEventListener("submit", async (e) => {
 
   await postPet(newPet);
   displayPets();
+  form.reset();
 });

@@ -43,6 +43,13 @@
               <option value="Rabbit">Rabbit</option>
               <option value="Other">Other</option>
             </select>
+            <div class="other_species hide">
+              <div>
+                <label for="other_species">Other species</label>
+                <p id="name_info">Enter the pets species</p>
+              </div>
+              <input type="text" name="other_species" id="other_species" />
+            </div>
           </div>
 
           <div class="form_group">
@@ -108,16 +115,19 @@
             <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/09/The-Internet-has-transformed-felines-and-birds-into-hybrid-animals-59b9d560f414f__700.jpg" alt="pet image" />
           </div>
           <h2 data-field="name">NAME</h2>
-          <p><span data-field="species">Species</span> - <span data-field="race">Race</span></p>
+          <p><span data-field="species">Species</span><span data-field="race">Race</span></p>
           <!-- <p data-field="traits">Traits</p> -->
+          <span data-field="dob"><span>4</span> years old</span>
           <dl class="traits-list" data-traits>
             <dt class="hide">Traits</dt>
           </dl>
           <p>Activity level: <span data-field="act">Activity Level</span></p>
-          <p>Date of birth: <span data-field="dob"></span></p>
+          <!-- <p>Date of birth: <span data-field="dob"></span></p> -->
           <!-- <p class="status"><span data-field="alive"></span></p> -->
-          <button data-id="15" data-action="delete">Delete</button>
-          <button data-id="15" data-action="update">Update state</button>
+          <div class="pet_btn">
+            <button data-id="15" data-action="delete">Delete</button>
+            <button data-id="15" data-action="update">Update state</button>
+          </div>
         </article>
       </template>
     </main>
