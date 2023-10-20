@@ -69,8 +69,9 @@ function addPet() {
 
     document.querySelector("#species").addEventListener("input", () => {
       if (document.querySelector("#species option[value='Other']").selected) {
-        console.log("other is choosen");
         document.querySelector(".other_species").classList.remove("hide");
+      } else {
+        document.querySelector(".other_species").classList.add("hide");
       }
     });
   });
@@ -114,6 +115,8 @@ form.addEventListener("submit", async (e) => {
       newTraitArray.push(newTrait);
     });
   }
+  // let activityLevel = document.querySelector("#activityLevel option[selected]");
+  // console.log(activityLevel);
   const newPet = {
     name: newName,
     species: species,

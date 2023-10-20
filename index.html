@@ -80,13 +80,13 @@
               <label for="activityLevel">Activity Level</label>
               <p id="activityLevel_info">Choose the pets activity level</p>
             </div>
-            <select name="activityLevel" id="activityLevel" aria-describedby="activityLevel_info">
+            <select name="activityLevel" id="activityLevel" aria-describedby="activityLevel_info" required>
               <option value="" disabled selected>Please choose a level...</option>
               <option value="1">1 - Low energy</option>
-              <option value="1">2</option>
-              <option value="1">3</option>
-              <option value="1">4</option>
-              <option value="1">5 - High energy</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - High energy</option>
             </select>
           </div>
 
@@ -95,7 +95,7 @@
               <label for="dob">Date of birth</label>
               <p id="dob_info">Enter the date of birth of the pet</p>
             </div>
-            <input type="date" name="dob" id="dob" aria-describedby="dob_info" />
+            <input type="date" name="dob" id="dob" aria-describedby="dob_info" required />
           </div>
 
           <div aria-labelledby="is-alive" class="pet_alive">
