@@ -37,11 +37,11 @@
             </div>
             <select name="species" id="species" aria-describedby="species_info" required>
               <option value="" disabled selected>Please choose an option...</option>
-              <option value="cat">Cat</option>
-              <option value="dog">Dog</option>
-              <option value="bird">Bird</option>
-              <option value="rabbit">Rabbit</option>
-              <option value="other">Other</option>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+              <option value="Bird">Bird</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -74,7 +74,7 @@
               <p id="activityLevel_info">Choose the pets activity level</p>
             </div>
             <select name="activityLevel" id="activityLevel" aria-describedby="activityLevel_info">
-              <option value="">Please choose a level...</option>
+              <option value="" disabled selected>Please choose a level...</option>
               <option value="1">1 - Low energy</option>
               <option value="1">2</option>
               <option value="1">3</option>
@@ -103,6 +103,7 @@
 
       <template id="pet">
         <article class="pet">
+          <div class="dead_sticker hide" data-field="isAlive">Dead</div>
           <div class="image_container">
             <img src="https://static.boredpanda.com/blog/wp-content/uploads/2017/09/The-Internet-has-transformed-felines-and-birds-into-hybrid-animals-59b9d560f414f__700.jpg" alt="pet image" />
           </div>
@@ -111,7 +112,7 @@
           <p data-field="traits">Traits</p>
           <p>Activity level: <span data-field="act">Activity Level</span></p>
           <p>Date of birth: <span data-field="dob"></span></p>
-          <p>Is alive: <span data-field="alive"></span></p>
+          <!-- <p class="status"><span data-field="alive"></span></p> -->
           <button data-id="15" data-action="delete">Delete</button>
           <button data-id="15" data-action="update">Update state</button>
         </article>

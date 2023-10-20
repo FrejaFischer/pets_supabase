@@ -1,4 +1,4 @@
-import { deletePet, getPets, patchPet } from "./utils/REST_pets.js";
+import { deletePet, getPets, patchPet, postPet } from "./utils/REST_pets.js";
 
 async function displayPets() {
   const pets = await getPets();
@@ -14,10 +14,11 @@ async function displayPets() {
     clone.querySelector("[data-field=traits]").textContent = pet.traits;
     clone.querySelector("[data-field=act]").textContent = pet.activityLevel;
     clone.querySelector("[data-field=dob]").textContent = pet.dob;
-    if (pet.isAlive === true) {
-      clone.querySelector("[data-field=alive]").textContent = "Yes";
-    } else {
-      clone.querySelector("[data-field=alive]").textContent = "No";
+    if (pet.isAlive === false) {
+      clone.querySelector("[data-field=isAlive]").classList.remove("hide");
+    }
+    if (pet.image) {
+      clone.querySelector(".image_container img").src = pet.image;
     }
 
     const deleteBtn = clone.querySelector("button[data-action=delete]");
@@ -62,7 +63,7 @@ addPet();
 displayPets();
 
 const form = document.querySelector(".new_pet_form");
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = new FormData(form);
@@ -71,23 +72,30 @@ form.addEventListener("submit", (e) => {
   if (formData.get("isAlive") == "0") {
     alive = false;
   }
+  //Makes the first letter in name in uppercase
+  let petName = formData.get("name");
+  let newName = petName.replace(petName[0], petName[0].toUpperCase());
+
+  //Makes each traits first letter in uppercase
+  let traitsArray = formData.get("traits").split("\n");
+  let newTraitArray = [];
+  traitsArray.forEach((trait) => {
+    let newTrait = trait.replace(trait[0], trait[0].toUpperCase());
+    console.log(newTrait);
+    newTraitArray.push(newTrait);
+  });
 
   const newPet = {
-    name: formData.get("name"),
+    name: newName,
+    species: formData.get("species"),
     race: formData.get("race"),
+    traits: newTraitArray,
+    activityLevel: formData.get("activityLevel"),
+    dob: formData.get("dob"),
+    isAlive: alive,
   };
-
   console.log(newPet);
-});
 
-//Saml formen op
-//lytte efter submit, evt.preventDefault()
-//samle
-// race: "Labrador",
-// dob: "2005-03-26",
-// name: "Felix",
-// isAlive: true,
-// activityLevel: 4,
-// traits: ["good boy"],
-// species: "Dog",
-// image: "doggyFelix.webp",
+  await postPet(newPet);
+  displayPets();
+});
